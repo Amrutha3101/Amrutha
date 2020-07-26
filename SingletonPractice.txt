@@ -1,0 +1,38 @@
+using system;
+namespace Singleton
+{
+class Singleton
+{
+private static Singleton instance;
+private int data;
+private Singleton(){}
+
+public static Singleton Instance()
+{
+if(instance == null)	
+{
+instance = new Singleton();
+}
+return instance	;
+}
+
+public void SetData(int value)
+{
+data = value;
+}
+ public int GetData()
+{
+return data;
+}
+}
+
+class SingletonPractice
+{
+static void Main(string[] args)
+{
+Singleton.Instance().SetData(15);
+Console.WriteLine("Data is" + Singleton.Instance().GetData());
+}
+}
+}
+
