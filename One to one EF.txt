@@ -1,0 +1,39 @@
+ONE TO ONE RELATIONSHIP IN ENTITY FRAMEWORK USING CODE FIRST APPROACH
+
+
+public class Author
+{
+	public AuthorID {get;set;}
+	public string FirstName {get;set;}
+	public string LastName {get;set;}
+
+	public AuthorBiography Biography {get;set;}
+}
+
+
+public class AuthorBiography
+{
+	public int AuthorBiographyID {get;set;}
+	public string Biography {get;set;}
+	public DateTime DateOfBirth {get;set;}
+	public string PlaceOfBirth {get;set;}
+	public string Nationality {get;set;}
+	public int AuthorRef {get;set;}
+
+	public Author Author {get;set;}
+}
+
+class MYContext : DbContext
+{
+	public DbSet<Author> Authors{get; set;}
+	public DbSet<AuthorBiography> AuthorBiographys{get; set;}
+
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		modelBuilder.Entity<Author>()
+		.HasOne(a => a.Biography)
+		.WithOne(b => b.Author)
+		.HasForeignKey<AuthorBiography>(b => b.AuthorRef);
+}
+
+
