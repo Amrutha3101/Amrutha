@@ -1,4 +1,4 @@
-Simple Example Program For Delegates:
+Simple Example Program For Delegates
 
 using System;
 
